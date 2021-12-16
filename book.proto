@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "test/book";
+
+package book;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service BookService {
+    rpc FindById(google.protobuf.UInt64Value) returns (Book) {}
+    rpc FindAll(google.protobuf.Empty) returns (BookList) {}
+    rpc Create(Book) returns (Book) {}
+}
+
+message Book {
+    uint64 id = 1;
+    string title = 2;
+    string author = 3;
+}
+message BookList {
+    repeated Book books = 1;
+}
